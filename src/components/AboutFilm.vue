@@ -1,13 +1,15 @@
 <template>
   <div class="about-film">
-    <movie-description class="about-film__descr"></movie-description>
+    <movie-description></movie-description>
+    <movie-reviews></movie-reviews>
   </div>
 </template>
 
 <script>
 import MovieDescription from './MovieDescription.vue';
+import MovieReviews from './MovieReviews.vue';
 export default {
-  components: { MovieDescription },
+  components: { MovieDescription, MovieReviews },
 };
 </script>
 
