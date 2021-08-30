@@ -7,16 +7,21 @@
       </div>
       <img class="header__img" src="./assets/img/deadpool.jpg" alt="deadpool" />
     </header>
-    <main></main>
+    <main class="main">
+      <div class="main__container">
+        <about-film></about-film>
+      </div>
+    </main>
     <footer></footer>
   </div>
 </template>
 
 <script>
+import AboutFilm from './components/AboutFilm.vue';
 import Movie from './components/Movie.vue';
 import Navbar from './components/Navbar.vue';
 export default {
-  components: { Movie, Navbar },
+  components: { Movie, Navbar, AboutFilm },
   data() {
     return {
       movie: {
@@ -26,6 +31,16 @@ export default {
         premission: '18+',
       },
       links: ['Все кино', 'Рейтинги', 'Общение', 'Войти'],
+      descriptionFilm: {
+        text:
+          'Уэйд Уилсон — наёмник. Будучи побочным продуктом программы вооружённых сил под названием «Оружие X», Уилсон приобрёл невероятную силу, проворство и способность к исцелению. Но страшной ценой: его клеточная структура постоянно меняется, а здравомыслие сомнительно. Всё, чего Уилсон хочет, — это держаться на плаву в социальной выгребной яме. Но течение в ней слишком быстрое.',
+        image: 'poster.jpg',
+      },
+    };
+  },
+  provide() {
+    return {
+      description: this.descriptionFilm,
     };
   },
 };
@@ -65,6 +80,15 @@ export default {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+  }
+}
+
+.main {
+  max-width: 780px;
+  padding: 0 15px;
+  margin: 0 auto;
+  &__container {
+    background-color: $light-bg;
   }
 }
 </style>
