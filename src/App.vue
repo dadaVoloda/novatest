@@ -41,12 +41,17 @@ export default {
         { title: 'нейтральная', amount: 41 },
         { title: 'отрицательных', amount: 66 },
       ],
+      videoInfo: {
+        preview: 'preview.jpg',
+        url: 'https://www.youtube.com/embed/FyKWUTwSYAs',
+      },
     };
   },
   provide() {
     return {
       description: this.descriptionFilm,
       reviews: this.movieReviews,
+      video: this.videoInfo,
     };
   },
 };
