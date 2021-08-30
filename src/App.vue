@@ -2,8 +2,10 @@
   <div>
     <header class="header">
       <div class="header__container">
-        <movie :movie="movie"></movie>
+        <movie class="header__component" :movie="movie"></movie>
+        <navbar class="header__component" :links="links"></navbar>
       </div>
+      <img class="header__img" src="./assets/img/deadpool.jpg" alt="deadpool" />
     </header>
     <main></main>
     <footer></footer>
@@ -12,8 +14,9 @@
 
 <script>
 import Movie from './components/Movie.vue';
+import Navbar from './components/Navbar.vue';
 export default {
-  components: { Movie },
+  components: { Movie, Navbar },
   data() {
     return {
       movie: {
@@ -22,6 +25,7 @@ export default {
         country: 'usa',
         premission: '18+',
       },
+      links: ['Все кино', 'Рейтинги', 'Общение', 'Войти'],
     };
   },
 };
@@ -48,6 +52,19 @@ export default {
     max-width: 1170px;
     margin: 0 auto;
     padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 50px;
+  }
+  &__component {
+    position: relative;
+    z-index: 1;
+  }
+  &__img {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 </style>
