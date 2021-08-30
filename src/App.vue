@@ -45,6 +45,14 @@ export default {
         preview: 'preview.jpg',
         url: 'https://www.youtube.com/embed/FyKWUTwSYAs',
       },
+      sliderPictures: [
+        'picture1.jpg',
+        'picture2.jpg',
+        'picture3.jpg',
+        'picture4.jpg',
+        'picture5.jpg',
+        'picture6.jpg',
+      ],
     };
   },
   provide() {
@@ -52,6 +60,7 @@ export default {
       description: this.descriptionFilm,
       reviews: this.movieReviews,
       video: this.videoInfo,
+      pictures: this.sliderPictures,
     };
   },
 };

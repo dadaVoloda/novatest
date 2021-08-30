@@ -3,6 +3,7 @@
     <movie-description></movie-description>
     <movie-reviews></movie-reviews>
     <movie-video></movie-video>
+    <slider></slider>
   </div>
 </template>
 
@@ -10,8 +11,9 @@
 import MovieDescription from './MovieDescription.vue';
 import MovieReviews from './MovieReviews.vue';
 import MovieVideo from './MovieVideo.vue';
+import Slider from './Slider.vue';
 export default {
-  components: { MovieDescription, MovieReviews, MovieVideo },
+  components: { MovieDescription, MovieReviews, MovieVideo, Slider },
 };
 </script>
 
