@@ -8,7 +8,6 @@
     </div>
     <iframe
       v-show="isVideoShow"
-      id="video"
       class="video__iframe"
       width="100%"
       height="422"

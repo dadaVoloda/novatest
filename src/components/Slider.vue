@@ -2,12 +2,12 @@
   <div class="slider">
     <div class="slider__wrapper">
       <ul ref="slider" class="slider__list" :class="{ transition: transition }">
-        <li class="slider__item" v-for="item in pictures" :key="item">
-          <img :src="require(`../assets/img/${item}`)" alt="image" />
-          <button class="slider__item-btn" type="button">
-            <img src="../assets/img/zoom.png" alt="zoom icon" />
-          </button>
-        </li>
+        <slide
+          v-for="item in pictures"
+          :key="item.id"
+          :item="item"
+          @open="$emit('open', item)"
+        ></slide>
       </ul>
     </div>
     <button @click="switchSlide('prev')" class="slider__btn slider__btn--prev" type="button">
@@ -20,7 +20,9 @@
 </template>
 
 <script>
+import Slide from './Slide.vue';
 export default {
+  components: { Slide },
   inject: ['pictures'],
   data() {
     return {
@@ -93,31 +95,6 @@ export default {
     &.transition {
       transition: 0.3s;
     }
-  }
-
-  &__item {
-    min-width: 165px;
-    position: relative;
-    margin: 0 15px;
-    &:hover {
-      .slider__item-btn {
-        opacity: 1;
-      }
-    }
-  }
-
-  &__item-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(86, 58, 58, 0.5);
-    opacity: 0;
-    transition: 0.25s;
   }
 
   &__btn {

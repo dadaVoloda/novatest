@@ -9,19 +9,33 @@
     </header>
     <main class="main">
       <div class="main__container">
-        <about-film></about-film>
+        <about-film @openModal="openModal"></about-film>
       </div>
     </main>
-    <footer></footer>
+    <footer class="footer">
+      <div class="footer__container">
+        <ul class="footer__items">
+          <li class="footer__item">
+            <a href="#" class="footer__link"> Реклама </a>
+          </li>
+          <li class="footer__item">
+            <a href="#" class="footer__link"> Условия использования </a>
+          </li>
+        </ul>
+        <p class="footer__copyright">© 2003–2016 Spike</p>
+      </div>
+    </footer>
+    <modal v-if="visibleModal" @close="closeModal" :modalPicture="modalPicture"></modal>
   </div>
 </template>
 
 <script>
 import AboutFilm from './components/AboutFilm.vue';
+import Modal from './components/Modal.vue';
 import Movie from './components/Movie.vue';
 import Navbar from './components/Navbar.vue';
 export default {
-  components: { Movie, Navbar, AboutFilm },
+  components: { Movie, Navbar, AboutFilm, Modal },
   data() {
     return {
       movie: {
@@ -46,13 +60,33 @@ export default {
         url: 'https://www.youtube.com/embed/FyKWUTwSYAs',
       },
       sliderPictures: [
-        'picture1.jpg',
-        'picture2.jpg',
-        'picture3.jpg',
-        'picture4.jpg',
-        'picture5.jpg',
-        'picture6.jpg',
+        {
+          id: 1,
+          image: 'picture1.jpg',
+        },
+        {
+          id: 2,
+          image: 'picture2.jpg',
+        },
+        {
+          id: 3,
+          image: 'picture3.jpg',
+        },
+        {
+          id: 4,
+          image: 'picture4.jpg',
+        },
+        {
+          id: 5,
+          image: 'picture5.jpg',
+        },
+        {
+          id: 6,
+          image: 'picture6.jpg',
+        },
       ],
+      visibleModal: false,
+      modalPicture: '',
     };
   },
   provide() {
@@ -62,6 +96,15 @@ export default {
       video: this.videoInfo,
       pictures: this.sliderPictures,
     };
+  },
+  methods: {
+    openModal(item) {
+      this.visibleModal = true;
+      this.modalPicture = item;
+    },
+    closeModal() {
+      this.visibleModal = false;
+    },
   },
 };
 </script>
@@ -109,6 +152,36 @@ export default {
   margin: 0 auto;
   &__container {
     background-color: $light-bg;
+  }
+}
+
+.footer {
+  &__container {
+    display: flex;
+    align-items: center;
+    max-width: 780px;
+    height: 58px;
+    padding: 0 15px;
+    margin: 0 auto;
+    font-size: 14px;
+    color: #fff;
+  }
+
+  &__items {
+    display: flex;
+    margin-left: auto;
+  }
+
+  &__item {
+    margin-right: 17px;
+  }
+
+  &__link {
+    transition: 0.25s;
+    &:hover,
+    &:focus {
+      opacity: 0.6;
+    }
   }
 }
 </style>

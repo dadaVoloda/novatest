@@ -3,7 +3,7 @@
     <movie-description></movie-description>
     <movie-reviews></movie-reviews>
     <movie-video></movie-video>
-    <slider></slider>
+    <slider @open="changePicture"></slider>
   </div>
 </template>
 
@@ -14,6 +14,17 @@ import MovieVideo from './MovieVideo.vue';
 import Slider from './Slider.vue';
 export default {
   components: { MovieDescription, MovieReviews, MovieVideo, Slider },
+  data() {
+    return {
+      picture: {},
+    };
+  },
+  methods: {
+    changePicture(item) {
+      this.picture = item;
+      this.$emit('openModal', this.picture.image);
+    },
+  },
 };
 </script>
 
