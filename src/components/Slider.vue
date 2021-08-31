@@ -90,9 +90,6 @@ export default {
 .slider {
   position: relative;
   padding: 68px 0;
-  @media (max-width: 500px) {
-    padding: 40px 0;
-  }
 
   &__wrapper {
     position: relative;

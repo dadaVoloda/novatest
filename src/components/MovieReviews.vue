@@ -49,7 +49,9 @@ export default {
   }
   &__list {
     display: flex;
-    flex-wrap: wrap;
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+    }
     @media (max-width: 500px) {
       flex-direction: column;
     }

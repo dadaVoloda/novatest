@@ -119,7 +119,6 @@ export default {
     },
     updateWidth() {
       this.width = window.innerWidth;
-      console.log(this.width);
     },
     closeNavbar() {
       this.visibleNavbar = false;

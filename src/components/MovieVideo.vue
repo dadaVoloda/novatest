@@ -44,7 +44,7 @@ export default {
     height: 300px;
   }
   @media (max-width: 375px) {
-    height: 250px;
+    height: 280px;
   }
 
   &__image-block {
