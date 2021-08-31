@@ -1,6 +1,6 @@
 <template>
   <div class="video">
-    <div v-show="!isVideoShow">
+    <div v-show="!isVideoShow" class="video__image-block">
       <img class="video__image" :src="require(`../assets/img/${video.preview}`)" alt="preview" />
       <button class="video__btn" @click="showVideo" type="button">
         <img src="../assets/img/play.png" alt="play" />
@@ -9,8 +9,6 @@
     <iframe
       v-show="isVideoShow"
       class="video__iframe"
-      width="100%"
-      height="422"
       src="https://www.youtube.com/embed/FyKWUTwSYAs"
       title="YouTube video player"
       frameborder="0"
@@ -39,7 +37,24 @@ export default {
 <style scoped lang="scss">
 .video {
   position: relative;
-  min-height: 422px;
+  display: flex;
+  flex-direction: column;
+  height: 422px;
+  @media (max-width: 500px) {
+    height: 300px;
+  }
+  @media (max-width: 375px) {
+    height: 250px;
+  }
+
+  &__image-block {
+    flex: 1;
+  }
+
+  &__image {
+    height: 100%;
+    object-fit: cover;
+  }
 
   &__btn {
     position: absolute;
@@ -54,9 +69,14 @@ export default {
   }
 
   &__iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
+    width: 100%;
+    height: 422px;
+    @media (max-width: 500px) {
+      height: 300px;
+    }
+    @media (max-width: 375px) {
+      height: 250px;
+    }
   }
 }
 </style>

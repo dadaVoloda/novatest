@@ -3,13 +3,23 @@
     <header class="header">
       <div class="header__container">
         <movie class="header__component" :movie="movie"></movie>
-        <navbar class="header__component" :links="links"></navbar>
+        <navbar
+          class="header__component"
+          :links="links"
+          @closeNav="closeNavbar"
+          v-if="visibleNavbar"
+        ></navbar>
+        <button class="menu-btn" @click="openNavbar" v-else>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
       <img class="header__img" src="./assets/img/deadpool.jpg" alt="deadpool" />
     </header>
     <main class="main">
       <div class="main__container">
-        <about-film @openModal="openModal"></about-film>
+        <about-film @openModal="openModal" :width="width"></about-film>
       </div>
     </main>
     <footer class="footer">
@@ -87,6 +97,8 @@ export default {
       ],
       visibleModal: false,
       modalPicture: '',
+      width: 0,
+      visibleNavbar: true,
     };
   },
   provide() {
@@ -105,6 +117,25 @@ export default {
     closeModal() {
       this.visibleModal = false;
     },
+    updateWidth() {
+      this.width = window.innerWidth;
+      console.log(this.width);
+    },
+    closeNavbar() {
+      this.visibleNavbar = false;
+    },
+    openNavbar() {
+      this.visibleNavbar = true;
+    },
+  },
+  mounted() {
+    this.width = window.innerWidth;
+    if (this.width <= 768) {
+      this.visibleNavbar = false;
+    }
+  },
+  created() {
+    window.addEventListener('resize', this.updateWidth);
   },
 };
 </script>
@@ -126,13 +157,20 @@ export default {
   position: relative;
   height: 442px;
   color: #fff;
+  @media (max-width: 768px) {
+    height: 340px;
+  }
   &__container {
     max-width: 1170px;
     margin: 0 auto;
     padding: 0 15px;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding-top: 50px;
+    @media (max-width: 768px) {
+      padding-top: 30px;
+    }
   }
   &__component {
     position: relative;
@@ -143,6 +181,27 @@ export default {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    @media (max-width: 768px) {
+      height: 80%;
+      object-fit: cover;
+    }
+  }
+}
+
+.menu-btn {
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 36px;
+  height: 25px;
+  right: 15px;
+  top: 30px;
+  span {
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
   }
 }
 
@@ -150,6 +209,9 @@ export default {
   max-width: 780px;
   padding: 0 15px;
   margin: 0 auto;
+  @media (max-width: 500px) {
+    padding: 0;
+  }
   &__container {
     background-color: $light-bg;
   }
@@ -160,16 +222,25 @@ export default {
     display: flex;
     align-items: center;
     max-width: 780px;
-    height: 58px;
+    min-height: 58px;
     padding: 0 15px;
     margin: 0 auto;
     font-size: 14px;
     color: #fff;
+    @media (max-width: 500px) {
+      flex-direction: column;
+      padding-top: 5px;
+    }
   }
 
   &__items {
     display: flex;
     margin-left: auto;
+    @media (max-width: 500px) {
+      flex-direction: column;
+      align-items: center;
+      margin-left: 0;
+    }
   }
 
   &__item {

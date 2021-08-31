@@ -23,6 +23,11 @@
 import Slide from './Slide.vue';
 export default {
   components: { Slide },
+  props: {
+    width: {
+      type: Number,
+    },
+  },
   inject: ['pictures'],
   data() {
     return {
@@ -36,6 +41,7 @@ export default {
   },
   methods: {
     switchSlide(arg) {
+      console.log(this.visibleSlides);
       this.transition = true;
       const slider = this.$refs.slider;
       this.initialPosition = slider.offsetLeft;
@@ -65,6 +71,12 @@ export default {
   mounted() {
     this.sliderWidth = this.$refs.slider.offsetWidth;
     this.slideWidth = this.sliderWidth / this.pictures.length;
+    if (this.width <= 768) {
+      this.visibleSlides = 2;
+    }
+    if (this.width <= 500) {
+      this.visibleSlides = 1;
+    }
   },
   watch: {
     index() {
@@ -78,6 +90,9 @@ export default {
 .slider {
   position: relative;
   padding: 68px 0;
+  @media (max-width: 500px) {
+    padding: 40px 0;
+  }
 
   &__wrapper {
     position: relative;
@@ -85,6 +100,12 @@ export default {
     height: 184px;
     margin: 0 auto;
     overflow: hidden;
+    @media (max-width: 768px) {
+      max-width: 390px;
+    }
+    @media (max-width: 500px) {
+      max-width: 195px;
+    }
   }
 
   &__list {
@@ -103,6 +124,9 @@ export default {
     left: 33px;
     transform: translateY(-50%);
     transition: 0.25s;
+    @media (max-width: 550px) {
+      left: 15px;
+    }
     &:hover,
     &:focus {
       opacity: 0.6;
@@ -111,6 +135,9 @@ export default {
     &--next {
       left: auto;
       right: 33px;
+      @media (max-width: 550px) {
+        right: 15px;
+      }
     }
   }
 }

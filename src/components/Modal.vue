@@ -20,14 +20,14 @@ export default {
 <style scoped lang="scss">
 .modal {
   position: relative;
-  z-index: 5;
+  z-index: 20;
   position: fixed;
   display: flex;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.8);
 
   &__body {
     width: 400px;
@@ -35,6 +35,14 @@ export default {
     margin: auto;
     background-color: #fff;
     overflow: hidden;
+    @media (max-width: 500px) {
+      width: 350px;
+      min-height: 350px;
+    }
+    @media (max-width: 375px) {
+      width: 280px;
+      min-height: 280px;
+    }
     img {
       width: 100%;
       object-fit: cover;
