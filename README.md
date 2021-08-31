@@ -1,5 +1,7 @@
 # novatest
 
+### [Посмотреть результат](https://dadavoloda.github.io/novatest/) или https://dadavoloda.github.io/novatest/
+
 ## Project setup
 ```
 npm install
