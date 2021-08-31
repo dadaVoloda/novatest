@@ -3,7 +3,7 @@
     <movie-description></movie-description>
     <movie-reviews></movie-reviews>
     <movie-video></movie-video>
-    <slider @open="changePicture" :width="width"></slider>
+    <slider @open="changePicture"></slider>
   </div>
 </template>
 
@@ -14,11 +14,6 @@ import MovieVideo from './MovieVideo.vue';
 import Slider from './Slider.vue';
 export default {
   components: { MovieDescription, MovieReviews, MovieVideo, Slider },
-  props: {
-    width: {
-      type: Number,
-    },
-  },
   data() {
     return {
       picture: {},

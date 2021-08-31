@@ -23,11 +23,6 @@
 import Slide from './Slide.vue';
 export default {
   components: { Slide },
-  props: {
-    width: {
-      type: Number,
-    },
-  },
   inject: ['pictures'],
   data() {
     return {
@@ -37,11 +32,11 @@ export default {
       slideWidth: null,
       initialPosition: null,
       transition: false,
+      width: 0,
     };
   },
   methods: {
     switchSlide(arg) {
-      console.log(this.visibleSlides);
       this.transition = true;
       const slider = this.$refs.slider;
       this.initialPosition = slider.offsetLeft;
@@ -71,6 +66,7 @@ export default {
   mounted() {
     this.sliderWidth = this.$refs.slider.offsetWidth;
     this.slideWidth = this.sliderWidth / this.pictures.length;
+    this.width = window.innerWidth;
     if (this.width <= 768) {
       this.visibleSlides = 2;
     }

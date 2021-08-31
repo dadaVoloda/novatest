@@ -19,7 +19,7 @@
     </header>
     <main class="main">
       <div class="main__container">
-        <about-film @openModal="openModal" :width="width"></about-film>
+        <about-film @openModal="openModal"></about-film>
       </div>
     </main>
     <footer class="footer">
